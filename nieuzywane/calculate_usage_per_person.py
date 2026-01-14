@@ -1,6 +1,6 @@
 from avast import Avast
 
-class Usage:
+class Device_mapper:
     def __init__(self, readings, device_list, household_list):
         self.room_to_person = {person.get("room"): person.get("person_id") for person in household_list if person.get("room") is not None}
         self.device_to_room = {device.get("device_id"): device["room"] for device in device_list if device.get("room") is not None}

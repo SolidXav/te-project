@@ -6,6 +6,8 @@ class Avast:
             return "invalid kwh"
         if reading.get("device_id") is None or reading.get("device_id") not in device_list:
             return "Device not found"
+        if reading.get("avg_power_w") is None or reading.get("avg_power_w") < 0:
+            return "invalid avg_power_w"
         if reading.get("datetime") is None:
             return "No datetime"
         return None
@@ -34,3 +36,17 @@ class Avast:
         if date and isinstance(date, str) and len(date) >= 10:
             return date[:10]
         return None
+    @staticmethod
+    def check_anomaly_for_efficiency(reading, device_list):
+        device_id = reading.get("device_id")
+        avg_power_w = reading.get("avg_power_w")
+        if device_id is None or device_id not in device_list:
+            return "Device not found"
+        if avg_power_w is None or avg_power_w < 0:
+            return "invalid avg_power_w"
+        rated_power_w = device_list.get(device_id)
+        if rated_power_w is None or rated_power_w <= 0:
+            return "invalid rated_power_w"
+        return None
+    def __str__(self):
+        return "Baza wirusów programu Avast została zaktualizowana"
