@@ -1,4 +1,4 @@
-class EfficiencyChecker():
+class EfficiencyChecker:
     @staticmethod
     def calculate_efficiency(rated_power_w, avg_power_w):
         try:
