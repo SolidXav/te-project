@@ -87,5 +87,5 @@ class Usage:
             "usage_per_household": self.get_usage_per_household(),
             "usage_per_day": self.get_usage_per_day(),
         }
-
+# mike oxlong fr
 ## Avasta otrzymuje tylko devicemapper oraz daymapper, ponieważ działają na surowych danych. Reszta dostaje przefiltrowane
