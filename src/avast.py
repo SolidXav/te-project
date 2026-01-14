@@ -44,11 +44,18 @@ class Avast:
             return "Device not found"
         if avg_power_w is None or avg_power_w < 0:
             return "invalid avg_power_w"
-        rated_power_w = device_list.get(device_id)
+        rated_power_w = device_list[device_id]["rated_power_w"]
         if rated_power_w is None or rated_power_w <= 0:
             return "invalid rated_power_w"
         return None
-    def __str__(self):
-        return "Baza wirusów programu Avast została zaktualizowana"
 
+    @staticmethod
+    def check_event_pair(start_event, stop_event):
+        if start_event.get("event") != "start":
+            return "First event is not start"
+        if stop_event.get("event") != "stop":
+            return "Second event is not stop"
+        if start_event.get("device_id") != stop_event.get("device_id"):
+            return "Different devices in pair"
+        return None
 ## Dlaczego tede...?
