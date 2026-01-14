@@ -50,3 +50,5 @@ class Avast:
         return None
     def __str__(self):
         return "Baza wirusów programu Avast została zaktualizowana"
+
+## Dlaczego tede...?

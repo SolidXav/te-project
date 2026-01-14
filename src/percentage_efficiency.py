@@ -10,8 +10,8 @@ class EfficiencyChecker:
         if efficiency > cls.limit:
             return "damaged"
         return "healthy"
-    @classmethod
 
+    @classmethod
     def find_status_of_device_in_readings(cls, readings, devices):
         devices_list = {}
         results = {}
@@ -40,10 +40,10 @@ class EfficiencyChecker:
                 results[device_id] = {
                     "name" : z.get("name"),
                     "rated_power_w" : z.get("rated_power_w"),
-                    "avg_power_w" : round(z.get("avg_power_w"), 2),
+                    "avg_power_w" : round(avg_power_w, 2),
                     "efficiency" : round(efficiency, 2),
-                    "status" : status
-                    "is_damaged": efficiency > cls.limit
+                    "status" : status,
+                    "is_damaged": efficiency > cls.limit,
                     "readings": len(readings_list)
 
                 }
@@ -67,7 +67,7 @@ class EfficiencyChecker:
         healthy = []
 
         for device_id, z in results.items():
-            if z["healthy"]:
+            if not z["is_damaged"]:
                 healthy.append(f"{z['name']} has efficiency equals {z['efficiency']}%, Device is {z['status'].upper()}")
             else:
                 damaged.append(f"{z['name']} has efficiency equals {z['efficiency']}%, Device is {z['status'].upper()}")
@@ -83,3 +83,4 @@ class EfficiencyChecker:
 
         print(f"Total of healthy devices: {len(healthy)}, Total of damaged devices: {len(damaged)}")
 
+## Dlaczego tede...?
